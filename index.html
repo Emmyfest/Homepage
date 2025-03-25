@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Resource Portal</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M25,25 L75,25 L75,75 L25,75 Z" fill="none" stroke="%23cafad7" stroke-width="0.5"/></svg>');
+            background-size: 20px 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #2c7744;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><path d="M75,20 C40,20 10,50 10,90 C10,120 30,140 75,140 C120,140 140,120 140,90 C140,50 110,20 75,20 Z" fill="none" stroke="%23a5d6a7" stroke-width="1" opacity="0.3"/></svg>');
+            background-size: 300px 300px;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-button {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .resource-button:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+            border-color: #28a745;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            background-color: #e9f7ef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .resource-button h3 {
+            color: #2c7744;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-button p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .link-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .link-button:hover {
+            background-color: #218838;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #343a40;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: #adb5bd;
+        }
+
+        /* Decorative Elements */
+        .decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .decoration.top-left {
+            top: 50px;
+            left: 50px;
+        }
+
+        .decoration.bottom-right {
+            bottom: 50px;
+            right: 50px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .resource-button {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Elements -->
+    <div class="decoration top-left">
+        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100,10 C50,10 10,50 10,100 C10,150 50,190 100,190 C150,190 190,150 190,100 C190,50 150,10 100,10 Z" fill="#28a745"/>
+        </svg>
+    </div>
+    <div class="decoration bottom-right">
+        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100,10 C50,10 10,50 10,100 C10,150 50,190 100,190 C150,190 190,150 190,100 C190,50 150,10 100,10 Z" fill="#28a745"/>
+        </svg>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Agricultural Resource Portal</h1>
+        <p>Access essential tools and information to enhance your agricultural practices</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container">
+        <div class="button-container">
+            <!-- Plant Health Resource Button -->
+            <div class="resource-button">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,3 C16.9705627,3 21,7.02943725 21,12 C21,16.9705627 16.9705627,21 12,21 C7.02943725,21 3,16.9705627 3,12 C3,7.02943725 7.02943725,3 12,3 Z" fill="none" stroke="#28a745" stroke-width="1.5"></path>
+                        <path d="M12,9 C12,5 9,4 9,4 C9,4 6,8 12,9 Z" fill="#28a745"></path>
+                        <path d="M12,9 C12,5 15,4 15,4 C15,4 18,8 12,9 Z" fill="#28a745"></path>
+                        <path d="M12,9 L12,18" stroke="#28a745" stroke-width="1.5"></path>
+                        <path d="M9,14 L15,14" stroke="#28a745" stroke-width="1.5"></path>
+                    </svg>
+                </div>
+                <h3>Animal Health Center</h3>
+                <p>Access tools for diagnosing Animals, pest identification, and treatment recommendations</p>
+                <a href="https://emmyfest.github.io/Animal-/" class="link-button" id="url1-button">Learn More</a>
+            </div>
+
+            <!-- Weather & Climate Button -->
+            <div class="resource-button" onclick="redirectToUrl('url2')">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,3 L12,5" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M5.63603897,6.05025253 L7.05025253,7.46446609" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M3,12 L5,12" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M5.63603897,17.9497475 L7.05025253,16.5355339" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M12,21 L12,19" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M18.363961,17.9497475 L16.9497475,16.5355339" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M21,12 L19,12" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M18.363961,6.05025253 L16.9497475,7.46446609" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <circle cx="12" cy="12" r="4" fill="#28a745"></circle>
+                    </svg>
+                </div>
+                <h3>Weather & Climate</h3>
+                <p>Monitor weather forecasts, climate patterns, and get customized alerts for your agricultural planning</p>
+                <a href="https://emmyfest.github.io/Forecast/" class="link-button" id="url2-button">Explore Tools</a>
+            </div>
+
+            <!-- Market & Resources Button -->
+            <div class="resource-button" onclick="redirectToUrl('url3')">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3,6 L21,6" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M3,12 L21,12" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <path d="M3,18 L21,18" stroke="#28a745" stroke-width="1.5" stroke-linecap="round"></path>
+                        <circle cx="8" cy="6" r="2" fill="#28a745"></circle>
+                        <circle cx="16" cy="12" r="2" fill="#28a745"></circle>
+                        <circle cx="8" cy="18" r="2" fill="#28a745"></circle>
+                    </svg>
+                </div>
+                <h3>Market Insights</h3>
+                <p>Access price trends, market analysis, and connect with buyers and sellers in the agricultural sector</p>
+                <a href="https://emmyfest.github.io/Market/" class="link-button" id="url3-button">View Markets</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>© 2025 Agricultural Resource Portal. Designed to support sustainable farming practices and agricultural development.</p>
+    </footer>
+
+
+</body>
+</html>
